@@ -61,18 +61,22 @@ class KNearestNeighbor(object):
           is the Euclidean distance between the ith test point and the jth training
           point.
         """
-        num_test = X.shape[0]
-        num_train = self.X_train.shape[0]
-        dists = np.zeros((num_test, num_train))
-        for i in xrange(num_test):
-            for j in xrange(num_train):
+        num_test = X.shape[0]  # 测试集大小
+        num_train = self.X_train.shape[0]  # 训练集大小
+        dists = np.zeros((num_test, num_train))  # 初始化距离矩阵
+
+        for i in range(num_test):
+            for j in range(num_train):
                 #####################################################################
                 # TODO:                                                             #
                 # Compute the l2 distance between the ith test point and the jth    #
                 # training point, and store the result in dists[i, j]. You should   #
                 # not use a loop over dimension.                                    #
                 #####################################################################
-                pass
+                test_ith = X[i]
+                train_jth = self.X_train[j]
+                dist = np.sum((test_ith - train_jth) ** 2, axis=0) ** 0.5
+                dists[i][j] = dist
                 #####################################################################
                 #                       END OF YOUR CODE                            #
                 #####################################################################
@@ -88,13 +92,22 @@ class KNearestNeighbor(object):
         num_test = X.shape[0]
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
-        for i in xrange(num_test):
+
+        # a = X[1].reshape(1,X.shape[1])
+        # b = a - self.X_train
+        # print(a.shape)
+        # print(self.X_train.shape)
+        # print(b.shape)
+        for i in range(num_test):  # 遍历测试集
             #######################################################################
             # TODO:                                                               #
             # Compute the l2 distance between the ith test point and all training #
             # points, and store the result in dists[i, :].                        #
             #######################################################################
-            pass
+            test_ith = X[i].reshape(1, X.shape[1])  # (1,3072)
+            # X[i,:]
+            dists[i] = np.sum((test_ith - self.X_train) ** 2,
+                              axis=1) ** 0.5  # X_train: (5000,3072), 所以广播后的差也是(5000,3072)
             #######################################################################
             #                         END OF YOUR CODE                            #
             #######################################################################
@@ -110,6 +123,7 @@ class KNearestNeighbor(object):
         num_test = X.shape[0]
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
+
         #########################################################################
         # TODO:                                                                 #
         # Compute the l2 distance between all test points and all training      #
@@ -122,7 +136,16 @@ class KNearestNeighbor(object):
         # HINT: Try to formulate the l2 distance using matrix multiplication    #
         #       and two broadcast sums.                                         #
         #########################################################################
-        pass
+
+        # dist^2 =  test^2 + train^2 - 2* test* train
+        test_dot_train = np.dot(X, self.X_train.T)  # (500,列) * (列,5000)
+
+        test_square = np.sum(X ** 2, axis=1)  # 测试集每行平方后的和  #(500,)向量
+        test_square = np.tile(test_square, (num_train, 1))  # (复制的行数,重复的次数)  # (5000,500)
+        train_square = np.sum(self.X_train ** 2, axis=1)
+        train_square = np.tile(train_square, (num_test, 1))  # (500,5000)
+
+        dists = np.sqrt(test_square.T + train_square - 2 * test_dot_train)
         #########################################################################
         #                         END OF YOUR CODE                              #
         #########################################################################
@@ -141,9 +164,9 @@ class KNearestNeighbor(object):
         - y: A numpy array of shape (num_test,) containing predicted labels for the
           test data, where y[i] is the predicted label for the test point X[i].  
         """
-        num_test = dists.shape[0]
-        y_pred = np.zeros(num_test)
-        for i in xrange(num_test):
+        num_test = dists.shape[0]  # 测试集大小
+        y_pred = np.zeros(num_test)  # 初始化labels矩阵
+        for i in range(num_test):
             # A list of length k storing the labels of the k nearest neighbors to
             # the ith test point.
             closest_y = []
@@ -154,7 +177,9 @@ class KNearestNeighbor(object):
             # neighbors. Store these labels in closest_y.                           #
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
-            pass
+            dist_ith = dists[i]  # 第i个测试集的距离向量,每一列对应列号的训练集
+            # 找到距离向量排序后前k个最近的值的下标,找出下标对应的label
+            closest_y = [self.y_train[index] for index in np.argsort(dist_ith)[0:k]]
             #########################################################################
             # TODO:                                                                 #
             # Now that you have found the labels of the k nearest neighbors, you    #
@@ -162,7 +187,9 @@ class KNearestNeighbor(object):
             # Store this label in y_pred[i]. Break ties by choosing the smaller     #
             # label.                                                                #
             #########################################################################
-            pass
+            from collections import Counter
+            label = Counter(closest_y).most_common(1)[0][0]  # 返回map的list[('lable1', 2)]
+            y_pred[i] = label
             #########################################################################
             #                           END OF YOUR CODE                            #
             #########################################################################
