@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69691849-1389-40af-bd7d-12f7ea214154" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knn-zh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/knn-zh.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="69691849-1389-40af-bd7d-12f7ea214154" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +20,17 @@
       <file leaf-file-name="k_nearest_neighbor.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DSVC/classifiers/k_nearest_neighbor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3948">
+            <state relative-caret-position="3587">
               <caret line="188" column="39" selection-start-line="188" selection-start-column="39" selection-end-line="188" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="knn-zh.ipynb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/knn-zh.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="1" />
             </state>
           </provider>
         </entry>
@@ -96,7 +101,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="404" />
     <option name="y" value="-10" />
     <option name="width" value="624" />
@@ -108,7 +113,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -137,6 +141,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -215,17 +220,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="right" x="0" y="0" width="106" height="246" id="Documentation" order="5" side_tool="true" visible="true" weight="0.10927505" />
+      <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" side_tool="true" visible="true" weight="0.10927505" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32901832" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32901832" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32901832" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32901832" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.03411514" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10927505" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -248,6 +254,27 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/DSVC/classifiers/k_nearest_neighbor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3948">
+          <caret line="188" column="39" selection-start-line="188" selection-start-column="39" selection-end-line="188" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-313451744/numpy/core/multiarray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12453">
+          <caret line="593" column="39" selection-start-line="593" selection-start-column="39" selection-end-line="593" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/numpy/lib/shape_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9471">
+          <caret line="451" column="26" selection-start-line="451" selection-start-column="26" selection-end-line="451" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DSVC/classifiers/k_nearest_neighbor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3234">
@@ -330,13 +357,6 @@
     <entry file="file://$PROJECT_DIR$/DSVC/vis_utils.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/knn-zh.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/knn-en.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -372,9 +392,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/knn-zh.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DSVC/classifiers/k_nearest_neighbor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3948">
+        <state relative-caret-position="3587">
           <caret line="188" column="39" selection-start-line="188" selection-start-column="39" selection-end-line="188" selection-end-column="39" />
         </state>
       </provider>
