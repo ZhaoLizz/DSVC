@@ -93,6 +93,11 @@ class KNearestNeighbor(object):
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
 
+        # a = X[1].reshape(1,X.shape[1])
+        # b = a - self.X_train
+        # print(a.shape)
+        # print(self.X_train.shape)
+        # print(b.shape)
         for i in range(num_test):  # 遍历测试集
             #######################################################################
             # TODO:                                                               #
@@ -137,7 +142,7 @@ class KNearestNeighbor(object):
 
         test_square = np.sum(X ** 2, axis=1)  # 测试集每行平方后的和  #(500,)向量
         test_square = np.tile(test_square, (num_train, 1))  # (复制的行数,重复的次数)  # (5000,500)
-        train_square = np.sum(self.X_train ** 2, axis=1) # (5000,)
+        train_square = np.sum(self.X_train ** 2, axis=1)
         train_square = np.tile(train_square, (num_test, 1))  # (500,5000)
 
         dists = np.sqrt(test_square.T + train_square - 2 * test_dot_train)
