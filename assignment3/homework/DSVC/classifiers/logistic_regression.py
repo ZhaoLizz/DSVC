@@ -12,7 +12,7 @@ class LogisticRegression(object):
     def __init__(self):
         self.w = None
 
-    def loss(self, X_batch, y_batch):
+    def loss(self, X_batch, y_batch, classify_object=0):
         """
         Compute the loss function and its derivative.
         Subclasses will override this.
@@ -21,6 +21,7 @@ class LogisticRegression(object):
         - X_batch: A numpy array of shape (N, D) containing a minibatch of N
         data points; each point has dimension D.
         - y_batch: A numpy array of shape (N,) containing labels for the minibatch.
+        - classify_object: the number you want to classify by one-vs-all
 
         Returns: A tuple containing:
         - loss as a single float
@@ -46,14 +47,16 @@ class LogisticRegression(object):
         # gradient = gradient / m
 
         # 用向量的方法-------------------------
-        w = self.w
-        x_dot_w = np.dot(X_batch,w)
+        if (len(self.w.shape) == 1):
+            w = self.w
+        else:
+            w = self.w[classify_object]
+        x_dot_w = np.dot(X_batch, w)
         exp_wx = np.exp(x_dot_w)
         y_predict = exp_wx / (1 + exp_wx)
-        loss = np.sum(y_batch * np.log(y_predict) + (1 - y_batch)* np.log(1 - y_predict)) / len(y_batch)
+        loss = np.sum(y_batch * np.log(y_predict) + (1 - y_batch) * np.log(1 - y_predict)) / len(y_batch)
         loss = -loss
         gradient = X_batch.T.dot(y_predict - y_batch) / len(X_batch)
-
         return loss, gradient  # (weights.shape[1],1)
         #########################################################################
         #                       END OF YOUR CODE                                #
@@ -133,14 +136,12 @@ class LogisticRegression(object):
             # self.w = self.w - learning_rate * v_dw        # momentum
             self.w = self.w - learning_rate * grad
 
-
             #########################################################################
             #                       END OF YOUR CODE                                #
             #########################################################################
 
             if verbose and it % 100 == 0:
                 print('iteration %d / %d: loss %f' % (it, num_iters, loss))
-
 
         return loss_history
 
@@ -157,23 +158,30 @@ class LogisticRegression(object):
         array of length N, and each element is an integer giving the predicted
         class.
         """
-        y_pred = np.zeros(X.shape[1])
-        ###########################################################################
-        # TODO:                                                                   #
-        # Implement this method. Store the predicted labels in y_pred.            #
-        ###########################################################################
-        x_dot_w = np.dot(X, self.w)
-        exp_wx = np.exp(x_dot_w)
-        y_pred = exp_wx / (1 + exp_wx)
 
-        y_pred = np.where(y_pred > 0.5, 1, 0)
-        ###########################################################################
-        #                           END OF YOUR CODE                              #
-        ###########################################################################
-        return y_pred
+        if (self.w.shape[0] != 10):
+            y_pred = np.zeros(X.shape[1])
+            ###########################################################################
+            # TODO:                                                                   #
+            # Implement this method. Store the predicted labels in y_pred.            #
+            ###########################################################################
+            x_dot_w = np.dot(X, self.w)
+            exp_wx = np.exp(x_dot_w)
+            y_pred = exp_wx / (1 + exp_wx)
+
+            y_pred = np.where(y_pred > 0.5, 1, 0)
+            return y_pred
+        else:
+            # one vs all
+            x_dot_w = np.dot(X, self.w.T)
+            exp_wx = np.exp(x_dot_w)
+            y_pred = exp_wx / (1 + exp_wx)  # (m,10),10列代表对每个数值的预测概率
+            y_pred = np.max(y_pred,axis=1)
+            y_pred = np.where(y_pred > 0.5, 1, 0)
+            return y_pred
 
     def one_vs_all(self, X, y, learning_rate=1e-3, num_iters=100,
-                   batch_size=200, verbose=True):
+                   batch_size=200, verbose=True, decay_rate=0.5):
         """
         Train this linear classifier using stochastic gradient descent.
         Inputs:
@@ -184,5 +192,36 @@ class LogisticRegression(object):
         - num_iters: (integer) number of steps to take when optimizing
         - batch_size: (integer) number of training examples to use at each step.
         - verbose: (boolean) If true, print progress during optimization.
-
         """
+        num_train, dim = X.shape
+        if self.w is None or len(self.w.shape) == 1:
+            self.w = 0.001 * np.random.randn(10, dim)
+
+        loss_historys = []
+        loss_history_i = []
+
+        for i in range(10):
+            print("classify ", i, '-----------------------')
+            y_trans = (i == y).astype(int)
+            for it in range(num_iters):
+                random_index = np.random.choice(num_train, batch_size)
+                X_batch = X[random_index]
+                y_batch = y_trans[random_index]
+                weights_i = self.w[i]
+
+                # evaluate loss and gradient
+                loss, grad = self.loss(X_batch, y_batch, classify_object=i)
+                loss_history_i.append(loss)
+
+                # learning_rate decay linearly
+                # learning_rate = 1 / ((1 + decay_rate * it)) * learning_rate
+                # learning_rate decay exponentially
+                # learning_rate = (0.9 ** it) * learning_rate
+
+                # update w
+                weights_i = weights_i - learning_rate * grad
+
+                if verbose and it % 100 == 0:
+                    print('iteration %d / %d: loss %f' % (it, num_iters, loss))
+            loss_historys.append(loss_history_i)
+        return loss_historys
