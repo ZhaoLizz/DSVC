@@ -163,26 +163,22 @@ class LogisticRegression(object):
             y_pred = np.where(y_pred > 0.5, 1, 0)
             return y_pred
         else:
-            # one vs all
-            x_dot_w = np.dot(X, self.ws.T)  # (m,10)
-            exp_wx = np.exp(x_dot_w)
-            y_pred = exp_wx / (1 + exp_wx)  # (m,10),10列代表对每个数值的预测概率
-            y_pred = np.argmax(y_pred, axis=1)
+            # one vs all !!!(false dont konw why)!!!
+            # x_dot_w = np.dot(X, self.ws.T)  # (m,10)
+            # exp_wx = np.exp(x_dot_w)
+            # y_pred = exp_wx / (1 + exp_wx)  # (m,10),10列代表对每个数值的预测概率
+            # print("row y_pred", y_pred.shape)
+            # y_pred = np.argmax(y_pred, axis=1)
 
-            # lihao------------correct--------------
             y_pred1 = []
+            print('ws', self.ws.shape)
             for theta in self.ws:  # ws (10,n) ,w(1,n)
                 logits = 1 / (1 + np.exp(X.dot(theta.T)))  # (m,1)
                 y_pred1.append(logits)
             y_pred1 = np.array(y_pred1)  # (10,m)
-            y_pred1 = y_pred.T
-            print('y_pred1 row' ,y_pred1.shape)
             y_pred1 = np.argmax(y_pred1 , axis=0)
-
-            print(y_pred)
-            print(y_pred1)
-
-            return y_pred
+            print('y_pred1',y_pred1)
+            return y_pred1
 
 
     def one_vs_all(self, X, y, learning_rate=1e-3, num_iters=100,

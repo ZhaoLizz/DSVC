@@ -14,8 +14,8 @@
       <file leaf-file-name="logistic_regression.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homework/DSVC/classifiers/logistic_regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="175" column="39" selection-start-line="175" selection-start-column="39" selection-end-line="175" selection-end-column="39" />
+            <state relative-caret-position="408">
+              <caret line="216" column="57" selection-start-line="216" selection-start-column="57" selection-end-line="216" selection-end-column="57" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#2466#6363#0" />
@@ -170,8 +170,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/homework/DSVC/classifiers/logistic_regression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="175" column="39" selection-start-line="175" selection-start-column="39" selection-end-line="175" selection-end-column="39" />
+        <state relative-caret-position="408">
+          <caret line="216" column="57" selection-start-line="216" selection-start-column="57" selection-end-line="216" selection-end-column="57" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#2466#6363#0" />
