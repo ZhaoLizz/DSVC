@@ -1,14 +1,10 @@
 # Research Institute of Data Science and Vision Computing
 
-### 介绍
+### Introduction
 
-### 内容安排
+Research Institute of Data Science and Vision Computing 机器学习与深度学习课程作业
 
-[机器学习部分](machinelearning)
-
-#### NOTE
-
-余下的任务安排是以PPT的形式讲解，没有相关的讲义给出。后续会给出作业的版本。
+### Content
 
 [assignment1](assignment1)
 - 基础：Git、Python基础学习
@@ -35,25 +31,35 @@
 - forward pass 、 backpropagation介绍
 - 作业：two-layer Neural Network CIFAR-10图像分类
 
-assignment6
+[assignment6](assignment6)
 - Neural Network 模块化实现
 - batch normalization介绍
 - dropout介绍
-- 作业：改进 Neural Network 代码。
-- Bonus: Batch Normalization层的forward pass跟backpropagation实现
+- 作业：改进 Neural Network 代码、Batch Normalization、Dropout 实现
 
-assignment7
+[assignment7](assignment7)
 - CNN 介绍
 - 概念：卷积, Pooling, Stride, Padding, Learning Rate, Momentum, Softmax, ReLU, BP, SGD, Cross-Entropy Loss。
-- 作业：CNN MNIST数字序列识别、CIFAR-10图像分类。
+- 作业：CIFAR-10图像分类。
 
 
+### Teacher
 
-### 主要人员
+| 教师                              |                  -                  |
+| --------------------------------- | :---------------------------------: |
+| 秦品乐                            |                                     |
+| **助教**                          |                **-**                |
+| [武宽](https://github.com/quinwu) | [沈文祥](https://github.com/swxhss) |
 
-| 教师                                  |                -                |                 -                  |                -                 |
-| ----------------------------------- | :-----------------------------: | :--------------------------------: | :------------------------------: |
-| 秦品乐                                 |                                 |                                    |                                  |
-| **助教**                              |              **-**              |               **-**                |                -                 |
-| [陈君](https://github.com/chenjun187) | [武宽](https://github.com/quinwu) | [王琦](https://github.com/TaiXuan91) | [沈文祥](https://github.com/swxhss) |
 
+### Participating students
+
+- [2018 Summer](Course%20completion%20list)
+
+### Reference & Acknowledgements
+
+我们的课程作业内容主要参考到了以下相关课程，在此对以下相关内容的作者表示感谢。
+
+- [cs231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/)
+
+- [MIL 机器学习暑期研讨班](https://github.com/milLearningGroup/cama_summer_school_2017)

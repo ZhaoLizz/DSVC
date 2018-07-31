@@ -3,6 +3,7 @@
 stuff
 *.pyc
 
+
 assignment6/*
 assignment7/*
 assignment8/*
@@ -77,3 +78,4 @@ fabric.properties
 
 
 # End of https://www.gitignore.io/api/pycharm
+
